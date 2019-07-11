@@ -1,0 +1,24 @@
+dist: xenial
+
+language: minimal
+
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_REPO: lifeofguenter/app-engine-php
+    # DOCKER_USERNAME
+    - secure: "TadXMcFNTZJ8EQNoWZGEy0gDzlGa5t4G4JyQ2fgRcdJh39uZQtC+87hXpQ0rbqH2yD95YgLgijCwjLXexE3tUnDJEbESOUYG2yYV5UPXY6IX7MohjaA3BNqLnM5+c7yJQ+14PMPxqi7LDE0YvI4uV1ciXILriEu9QagsxGRXKbcStcJpg99r8eeZ0dgtbQUWzNnMUkbMYG6wV9QP5+c78fvHwCebbTb+f8Uuqmm6CLXD9RbcXwlF5X23dLOkFIlKUXlyzh0fycowYPz3UKomRtu/L4W59TTOlqQznWPqNAbkiBHcHqxNOgxhl1Sk4CltzVovLCyZSNw9O2qjyoRQAa5V9fZXLJE19rGOlJfCrIPhQa2gqYSjw0U2fgZCk10BS8Qm2oxoBLOxnEceXsutwzVtt32P37DXdYbgsW+7rePkbfjs/9d5Kf0UdSeqmSbvQYv6LZuuFtEj19l7mp4c/fV6Ye5I0Eq7KsqYmjdjH55zTjVtpWSPpVZcC/0wD4/7usX5ZOXucUW2hs74G8iFASB5V0PhmK96c+N39faLy41NyoKTmejfve3+141kSHtEzj5VtCOtjMD3Df//MFBrQ5kU/yP1GuoclAejxyLFygpB0FFKn8MKd/E3ZF21WUkU+bTdGwe7usLr7eYuQ3ykZZv+oCc8TZDsZCuTX9PlrO4="
+    # DOCKER_PASSWORD
+    - secure: "Vwe3XPwAOdAJ8KmDJtda9mqxP4NgUjhcCUV4xkGtjxoQ41OL0gKv8OHrMC4T97Tw2OeM/XmUhF5xyfaTEWFFADNJrG5QermhThak90BswtgUdmh9/XmULz/UdqbMQJse3BRz54DwyExpaEaswqkxLRh8o5zvCOujo4ovhyJZEQff0wuvN5h6UKJ4DkR83pCqwIgv5awgOLNpWdc9rSbguGMuTfEfe1f+Teln4aRJZjbcL6xICpcsFJbYVH1Uw3LpIXo5fOzdq+lK/Wj1aW0OpnyazuFCQ7BwmkigGhO+IV+//KA6K4f21rf56B66iKcX0bGlSgZTeabzrIw0Sk8tk9vcMrTGMahy9sTPTKrOwXDo1JdCrWcMDetp+gXQgNh7ELQPazCgI9sIk05MPhpA+HRZouNAL0h3b9tAiAmaY/G37mpKJLmA0FhLbMFmbvYRHQDhyWjAB0wINFqwc+zQCZ2dOU288fXuyul2Dmsgd1gmdVugaRMDn+EeA2nbEJa5g4gHcZhCd/n1crBTl+U7ht56VOHRf5DDE50OHqNQ95J01ug9q22tfYacLm0Pc83xq34oAsC610D6Z+A6gdLpJBSxfSa4id+AuAHA2Ez2TtrKIiyRcQVpw+nMPITGa0+UAnEQtt5Qrg34gxem+Z15Fg4ubhFBd0malh6ewX1CaN4="
+
+before_install:
+  - ./build.sh
+
+deploy:
+  provider: script
+  script: "./publish.sh"
+  skip_cleanup: true
+  on:
+    branch: master
