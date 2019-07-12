@@ -13,14 +13,23 @@ source "${__DIR__}/.bash/functions.lib.sh"
 set -E
 trap 'throw_exception' ERR
 
+extra_args=()
+
+if [[ ! -z "${http_proxy}" ]]; then
+  extra_args+=( "--build-arg" )
+  extra_args+=( "http_proxy=${http_proxy}" )
+fi
+
 for dockerfile in tags/*/Dockerfile; do
   folder="${dockerfile%/*}"
   tag="${folder##*/}"
 
   consolelog "building ${tag}..."
   { docker build \
+    --pull \
     -t "${DOCKER_REPO}:${tag}" \
     -f "${dockerfile}" \
+    "${extra_args[@]}" \
     . 2> /dev/stdout \
     | while IFS= read -r line; do printf '[%s] %s\n' "${tag}" "${line}"; done; echo "${PIPESTATUS[0]}" > ".pid_${tag}"; } &
 done

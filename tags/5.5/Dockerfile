@@ -69,7 +69,7 @@ RUN set -ex && \
       --with-zlib \
       --enable-bcmath \
       --enable-calendar \
-      --with-curl \
+      --with-curl=shared \
       --without-cdb \
       --enable-exif \
       --enable-ftp \
@@ -79,7 +79,8 @@ RUN set -ex && \
       --with-freetype-dir \
       --enable-gd-native-ttf \
       --with-mhash \
-      --enable-intl \
+      --enable-intl=shared \
+      --enable-fileinfo=shared \
       --enable-mbstring \
       --with-mcrypt \
       --with-mysql \
@@ -93,7 +94,6 @@ RUN set -ex && \
       --with-iconv-dir \
       --enable-opcache \
       --enable-shmop \
-      --disable-phar \
       --disable-phar \
       --without-pear && \
     make -j "$(nproc)" && \
@@ -123,7 +123,8 @@ RUN set -ex && \
     rm -rf \
       "google-cloud-sdk-${CLOUDSDK_VERSION}-linux-x86_64.tar.gz" \
       master.tar.gz \
-      appengine-php-extension-master
+      appengine-php-extension-master \
+      package.xml
 
 RUN set -ex && \
     mkdir -p \
