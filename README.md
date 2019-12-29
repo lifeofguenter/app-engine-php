@@ -3,12 +3,13 @@
 [![Build Status](https://travis-ci.org/lifeofguenter/docker-app-engine-php.svg?branch=master)](https://travis-ci.org/lifeofguenter/docker-app-engine-php)
 [![Docker Pulls](https://img.shields.io/docker/pulls/lifeofguenter/app-engine-php.svg)](https://hub.docker.com/r/lifeofguenter/app-engine-php)
 
-Expiremental docker image to run google-app-engine php5 (standard) in a docker container for local development which would require:
+Experimental docker image to run google-app-engine php5 (standard) in a docker container for local development which
+would otherwise require:
 
 * PHP5.5
 * google-sdk
-* gae php component
-* gae php extension
+* google-app-engine php component
+* google-app-engine php extension
 
 ## Usage
 
